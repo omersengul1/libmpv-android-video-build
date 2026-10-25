@@ -222,6 +222,11 @@ cpuflags=
 	\
 	--enable-filter=overlay \
 	--enable-filter=equalizer \
+	--enable-filter=dynaudnorm \
+	--enable-filter=acompressor \
+	--enable-filter=alimiter \
+	--enable-filter=aresample \
+	--enable-filter=aformat \
 	\
 	--enable-protocol=async \
 	--enable-protocol=cache \

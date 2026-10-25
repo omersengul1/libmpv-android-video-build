@@ -3,7 +3,8 @@ name: Build libmpv-android
 on:
   push:
     branches:
-      - main
+      - glaze-audio-filters
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -51,12 +52,15 @@ jobs:
             ./buildscripts/*.jar
             ./buildscripts/deps/media-kit-android-helper/app/build/outputs/apk/release/*.jar
       - name: Upload Release
-        uses: softprops/action-gh-release@v1
-        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        if: github.ref == 'refs/heads/glaze-audio-filters'
         with:
-          draft: true
+          draft: false
           prerelease: false
-          tag_name: "vnext"
+          tag_name: "v1.1.7-glaze.1"
+          target_commitish: ${{ github.sha }}
+          name: "v1.1.7-glaze.1 (dynaudnorm/acompressor/alimiter)"
+          body: "media-kit v1.1.7 default flavor + LGPL audio filters dynaudnorm, acompressor, alimiter, aresample, aformat (--disable-gpl kept)."
           files: |
             buildscripts/*.zip
             buildscripts/deps/media-kit-android-helper/app/build/outputs/apk/release/*.jar
